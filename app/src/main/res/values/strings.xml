@@ -8,6 +8,7 @@
     </string>
     <string name="overview_title">Overview \n</string>
     <string name="trailer_title">Trailers \n</string>
+    <string name="Review_title">Reviews \n</string>
     <string name="action_settings">Settings</string>
     <string name="action_share">Share</string>
 </resources>

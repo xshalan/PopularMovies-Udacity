@@ -26,7 +26,7 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp">
                 <ImageView
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/poster_dimen"
                         android:layout_height="wrap_content"
                         android:id="@+id/poster_in_details"
                         android:scaleType="centerCrop"
@@ -151,6 +151,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/divLine"
                     android:layout_marginLeft="16dp"
                     android:src="@drawable/line"
                     android:layout_alignBaseline="@id/Trailer_title"
@@ -158,6 +159,58 @@
                     android:paddingLeft="3dp"
                     android:paddingRight="3dp"
                     android:paddingBottom="5dp" />
+
+                <ImageView
+                    android:id="@+id/Trailer_Img"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:layout_alignParentBottom="true"
+                    android:paddingTop="28sp"
+                    android:layout_marginBottom="16sp"
+                    android:layout_margin="@dimen/text_margin" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:id="@+id/Review_title"
+                    android:text="@string/Review_title"
+                    android:textColor="@color/Titles"
+                    android:textSize="22dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/divLineReview"
+                    android:layout_marginLeft="16dp"
+                    android:src="@drawable/line"
+                    android:layout_alignBaseline="@id/Review_title"
+                    android:paddingTop="3dp"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:paddingBottom="5dp" />
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/review_listview"
+                    android:paddingTop="45sp"
+                    android:layout_alignParentBottom="true">
+
+                </ListView>
+
 
             </RelativeLayout>
 

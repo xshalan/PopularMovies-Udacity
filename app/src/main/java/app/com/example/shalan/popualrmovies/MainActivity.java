@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements SetOnMovieClickLi
 
     @Override
     protected void onStart() {
-        new Network.fetchMovieList().execute(Network.popularity);
+        new Network.fetchMovieList().execute(Network.popular);
         super.onStart();
     }
 
@@ -42,11 +42,11 @@ public class MainActivity extends AppCompatActivity implements SetOnMovieClickLi
         int itemId = item.getItemId() ;
         if(itemId == R.id.popular){
 
-            new Network.fetchMovieList().execute(Network.popularity);
+            new Network.fetchMovieList().execute(Network.popular);
 
         }else if(itemId == R.id.top_rated){
 
-            new Network.fetchMovieList().execute(Network.top_rated);
+            new Network.fetchMovieList().execute(Network.high_rated);
 
         }
         return super.onOptionsItemSelected(item);
