@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements SetOnMovieClickLi
 
     @Override
     protected void onStart() {
-        new Network.fetchMovieList().execute(Network.popular);
         super.onStart();
     }
 
@@ -71,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements SetOnMovieClickLi
 
 
         System.out.println("------------------------------------------------------"); ;
+        new Network.fetchMovieList().execute(Network.popular);
 
 
     }
