@@ -9,14 +9,13 @@ PopularMovies app -  Android developer nanodegree, Projects 1 &amp; 2
 - [x] When a movie poster thumbnail is selected, the movie details screen is launched.
 - [x] In a background thread, app queries the /movie/popular or /movie/top_rated API for the sort criteria specified in the settings menu.
 
-> **Reviewer comment:**
-
->  In my perspective, you have done a perfect job implementing popular movie stage 1 and the format of your codes is extremely standard and your codes are easy to be understood. Great job for your popular movie stage 1! Hope to see your stage 2 codes soon! :)
+> **Reviewer comment:** In my perspective, you have done a perfect job implementing popular movie stage 1 and the format of your codes is extremely standard and your codes are easy to be understood. Great job for your popular movie stage 1! Hope to see your stage 2 codes soon! :)
 
 ----------
 
 #### <i class="icon-file"></i> Stage 2 
--[ ] UI contains an element (e.g., a spinner or settings menu) to toggle the sort order of the movies by: most popular, highest rated.
+- [ ] Tablet Mode. 
+ -[ ] UI contains an element (e.g., a spinner or settings menu) to toggle the sort order of the movies by: most popular, highest rated.
 
 - [ ] Movie Details layout contains a section for displaying trailer videos and user reviews.
 
