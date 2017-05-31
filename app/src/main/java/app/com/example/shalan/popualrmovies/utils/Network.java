@@ -19,7 +19,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static app.com.example.shalan.popualrmovies.MainActivity.recyclerAdapter;
+import static app.com.example.shalan.popualrmovies.MainFragment.recyclerAdapter;
 
 /**
  * Created by noura on 06/04/2017.

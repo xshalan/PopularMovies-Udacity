@@ -63,6 +63,15 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.myHol
         notifyDataSetChanged();
 
     }
+
+    public ArrayList getMoviesList(){
+        if (movies != null){
+            return  movies ;
+        }else {
+            return null ;
+        }
+
+    }
     public void setListener(SetOnMovieClickListener listener){
         movieClickListener = listener ;
     }
@@ -85,7 +94,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.myHol
         @Override
         public void onClick(View v) {
             int positoin = getAdapterPosition() ;
-            movieClickListener.OnMovieClick(positoin,movies);
+            movieClickListener.OnMovieClick(positoin, movies);
         }
 
 

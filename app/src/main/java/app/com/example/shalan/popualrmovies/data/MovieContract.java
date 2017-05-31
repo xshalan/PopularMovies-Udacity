@@ -11,7 +11,7 @@ public class MovieContract  {
 
     public static final String AUTHORITY = "app.com.example.shalan.popualrmovies";
 
-    public static final Uri BASE_CONTENT_URL = Uri.parse("Content://" + AUTHORITY) ;
+    public static final Uri BASE_CONTENT_URL = Uri.parse("content://" + AUTHORITY) ;
 
     public static final String MOVIES_PATH = "movie" ;
 
@@ -30,6 +30,7 @@ public class MovieContract  {
         public static final String COLUMN_RATING = "rating";
         public static final String COLUMN_DATE = "release_date";
         public static final String COLUMN_COVER = "cover_iamge" ;
+        public static final String COLUMN_FAV = "IsFav" ;
 
 
 

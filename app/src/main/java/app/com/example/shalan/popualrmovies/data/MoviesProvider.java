@@ -64,12 +64,26 @@ public class MoviesProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknow Uri " + uri)  ;
         }
+        getContext().getContentResolver().notifyChange(uri,null);
         return returnUri;
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+        final SQLiteDatabase movieDB = movieDBHelper.getWritableDatabase() ;
+        final int match = sUriMatcher.match(uri) ;
+        int rowsDeleted;
+        switch (match) {
+            case Movie_Code :
+                rowsDeleted = movieDB.delete(MovieContract.MovieEntry.TABLE_NAME,selection,selectionArgs) ;
+
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknow Uri " + uri)  ;
+        }
+        getContext().getContentResolver().notifyChange(uri,null);
+
+        return rowsDeleted;
     }
 
     @Override
