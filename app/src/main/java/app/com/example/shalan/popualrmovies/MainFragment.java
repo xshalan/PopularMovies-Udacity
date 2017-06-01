@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import app.com.example.shalan.popualrmovies.data.MovieContract;
 import app.com.example.shalan.popualrmovies.utils.Network;
 import app.com.example.shalan.popualrmovies.utils.RecyclerAdapter;
 import app.com.example.shalan.popualrmovies.utils.SetOnMovieClickListener;
@@ -54,6 +53,7 @@ public class MainFragment extends Fragment implements SetOnMovieClickListener {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList("Movies",recyclerAdapter.getMoviesList());
+
     }
 
     @Override

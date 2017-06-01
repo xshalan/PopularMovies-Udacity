@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity    {
 
             new Network.fetchMovieList().execute(Network.high_rated);
 
+        }else if(itemId == R.id.favorite){
+
+            new Network.fetchFavMovies().execute(getApplicationContext()) ;
+
         }
         return super.onOptionsItemSelected(item);
     }

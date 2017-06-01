@@ -1,5 +1,7 @@
 package app.com.example.shalan.popualrmovies.utils;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import app.com.example.shalan.popualrmovies.Model.Movie;
 import app.com.example.shalan.popualrmovies.Model.Review;
 import app.com.example.shalan.popualrmovies.Model.Trailer;
+import app.com.example.shalan.popualrmovies.data.MovieContract;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -66,6 +69,25 @@ public class Network  {
     public static String releaseDate = "release_date" ;
     public static String posterPath = "poster_path" ;
     public static String desc = "overview" ;
+
+    private static String[] Movie_Colums = {MovieContract.MovieEntry._ID ,
+                                            MovieContract.MovieEntry.COLUMN_MOVIE_ID,
+                                            MovieContract.MovieEntry.COLUMN_TITLE ,
+                                            MovieContract.MovieEntry.COLUMN_OVERVIEW ,
+                                            MovieContract.MovieEntry.COLUMN_PPOSTER ,
+                                            MovieContract.MovieEntry.COLUMN_RATING ,
+                                            MovieContract.MovieEntry.COLUMN_COVER ,
+                                            MovieContract.MovieEntry.COLUMN_DATE ,
+
+                                            } ;
+     private static final int COLUMN_ID = 0 ;
+    private static final int COLUMN_MOVIE_ID = 1 ;
+    private static final int COLUMN_TITLE = 2 ;
+    private static final int COLUMN_OVERVIEW = 3 ;
+    private static final int COLUMN_POSTER = 4 ;
+    private static final int COLUMN_RATING = 5 ;
+    private static final int COLUMN_COVRE = 6 ;
+    private static final int COLUMN_DATE = 7 ;
 
     public static URL buildURL(String sortBy){
         URL url = null ;
@@ -273,6 +295,44 @@ public class Network  {
         }
 
 
+    }
+
+
+    public static class fetchFavMovies extends AsyncTask<Context,Void,ArrayList<Movie> > {
+
+        @Override
+        protected void onPostExecute(ArrayList<Movie> movies) {
+            super.onPostExecute(movies);
+            if (movies!= null ) {
+                recyclerAdapter.setMoviesList(movies);
+                recyclerAdapter.notifyDataSetChanged();
+
+            }
+        }
+
+        @Override
+        protected ArrayList<Movie> doInBackground(Context... params) {
+            ArrayList<Movie> favMovies = new ArrayList<>() ;
+            Cursor cursor = params[0].getContentResolver()
+                                      .query(MovieContract.MovieEntry.CONTENT_URI,
+                                              Movie_Colums  , null , null , null) ;
+            if (cursor != null && cursor.moveToNext()) {
+                do {
+                    int id = cursor.getInt(COLUMN_MOVIE_ID) ;
+                    int rating = cursor.getInt(COLUMN_RATING) ;
+                    String title = cursor.getString(COLUMN_TITLE) ;
+                    String overview = cursor.getString(COLUMN_OVERVIEW) ;
+                    String poster = cursor.getString(COLUMN_POSTER) ;
+                    String date = cursor.getString(COLUMN_DATE) ;
+                    String cover = cursor.getString(COLUMN_COVRE) ;
+
+                    Movie movie = new Movie(id,title,rating,date,overview,poster) ;
+                    favMovies.add(movie);
+                }while (cursor.moveToNext()) ;
+                cursor.close();
+            }
+            return favMovies;
+        }
     }
 
 }
