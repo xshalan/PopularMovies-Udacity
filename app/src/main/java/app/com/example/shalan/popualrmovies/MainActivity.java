@@ -8,8 +8,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import app.com.example.shalan.popualrmovies.utils.Network;
-
 public class MainActivity extends AppCompatActivity    {
 
 
@@ -27,21 +25,8 @@ public class MainActivity extends AppCompatActivity    {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId() ;
-        if(itemId == R.id.popular){
 
-            new Network.fetchMovieList().execute(Network.popular);
-
-        }else if(itemId == R.id.top_rated){
-
-            new Network.fetchMovieList().execute(Network.high_rated);
-
-        }else if(itemId == R.id.favorite){
-
-            new Network.fetchFavMovies().execute(getApplicationContext()) ;
-
-        }
-        return super.onOptionsItemSelected(item);
+        return false ;
     }
 
     @Override

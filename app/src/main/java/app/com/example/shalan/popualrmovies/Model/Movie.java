@@ -3,8 +3,6 @@ package app.com.example.shalan.popualrmovies.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 /**
  * Created by noura on 05/04/2017.
  */
@@ -28,6 +26,16 @@ public class Movie  implements Parcelable {
         this.overview = overview;
         this.posterUrl = "https://image.tmdb.org/t/p/w342" + posterUrl ;
 
+    }
+    public Movie(int movieID,String originalTitle, double userRating ,
+                 String releaseDate, String overview, String posterUrl,int fav ){
+        this.movieID = movieID ;
+        this.originalTitle = originalTitle ;
+        this.userRating = userRating;
+        this.releaseDate = releaseDate;
+        this.overview = overview;
+        this.posterUrl =  posterUrl ;
+        fav = 0 ;
     }
 
     public int getMovieID(){
@@ -53,6 +61,7 @@ public class Movie  implements Parcelable {
     public String getPosterUrl(){
         return posterUrl ;
     }
+
     public String[] getImages(){return images;}
     public void setImages(String[] array){
         this.images = array ;

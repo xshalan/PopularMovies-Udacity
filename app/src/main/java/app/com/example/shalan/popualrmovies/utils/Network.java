@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +19,7 @@ import app.com.example.shalan.popualrmovies.Model.Movie;
 import app.com.example.shalan.popualrmovies.Model.Review;
 import app.com.example.shalan.popualrmovies.Model.Trailer;
 import app.com.example.shalan.popualrmovies.data.MovieContract;
+import app.com.example.shalan.popualrmovies.data.MovieDBHelper;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -70,7 +72,7 @@ public class Network  {
     public static String posterPath = "poster_path" ;
     public static String desc = "overview" ;
 
-    private static String[] Movie_Colums = {MovieContract.MovieEntry._ID ,
+    public static String[] Movie_Colums = {MovieContract.MovieEntry._ID ,
                                             MovieContract.MovieEntry.COLUMN_MOVIE_ID,
                                             MovieContract.MovieEntry.COLUMN_TITLE ,
                                             MovieContract.MovieEntry.COLUMN_OVERVIEW ,
@@ -300,19 +302,14 @@ public class Network  {
 
     public static class fetchFavMovies extends AsyncTask<Context,Void,ArrayList<Movie> > {
 
-        @Override
-        protected void onPostExecute(ArrayList<Movie> movies) {
-            super.onPostExecute(movies);
-            if (movies!= null ) {
-                recyclerAdapter.setMoviesList(movies);
-                recyclerAdapter.notifyDataSetChanged();
 
-            }
-        }
 
         @Override
         protected ArrayList<Movie> doInBackground(Context... params) {
             ArrayList<Movie> favMovies = new ArrayList<>() ;
+            MovieDBHelper movieDBHelper = new MovieDBHelper(params[0]);
+
+            movieDBHelper.getReadableDatabase() ;
             Cursor cursor = params[0].getContentResolver()
                                       .query(MovieContract.MovieEntry.CONTENT_URI,
                                               Movie_Colums  , null , null , null) ;
@@ -325,14 +322,31 @@ public class Network  {
                     String poster = cursor.getString(COLUMN_POSTER) ;
                     String date = cursor.getString(COLUMN_DATE) ;
                     String cover = cursor.getString(COLUMN_COVRE) ;
+                    Log.v("Data : " , title) ;
+                    Log.v("Data : " , overview) ;
+                    //Log.v("Data : " , poster) ;
 
-                    Movie movie = new Movie(id,title,rating,date,overview,poster) ;
+                    Movie movie = new Movie(id,title,rating,date,overview,poster,0) ;
+                    Log.v("Data : " , movie.toString()) ;
                     favMovies.add(movie);
                 }while (cursor.moveToNext()) ;
                 cursor.close();
+            } else {
+                Log.v("Cursor:","Null !");
             }
             return favMovies;
         }
+
+        @Override
+        protected void onPostExecute(ArrayList<Movie> movies) {
+            super.onPostExecute(movies);
+            if (movies!= null ) {
+                recyclerAdapter.setMoviesList(movies);
+                recyclerAdapter.notifyDataSetChanged();
+
+            }
+        }
     }
+
 
 }

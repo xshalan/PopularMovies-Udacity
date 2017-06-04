@@ -81,6 +81,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
     TextView rate ;
     TextView date;
     ListView review_listview ;
+     int Position ;
 
     FloatingActionButton fab ;
     String TAG = DetailsActivity.class.getSimpleName() ;
@@ -103,6 +104,40 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Log.v("On Resume","Entry on reume") ;
+        Boolean isFav ;
+        int Rows =0;
+        int id =movie.get(Position).getMovieID() ;
+        Log.v("On Resume| background",Integer.toString(id)) ;
+        Cursor cursor = getActivity().getContentResolver().query(
+                MovieContract.MovieEntry.CONTENT_URI,
+                null ,
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + "= ?" ,
+                new String[] {Integer.toString(id)} ,
+                null
+        ) ;
+        if(cursor!=null){
+            Rows = cursor.getCount() ;
+        }
+        cursor.close();
+
+        if (Rows > 0) {
+            isFav = true ;
+        }else {
+            isFav=false ;
+        }
+        if (isFav ){
+            FAVORITE = 1 ;
+            fab.setImageResource(R.drawable.heartclicked);
+        }else {
+            FAVORITE = 0 ;
+            fab.setImageResource(R.drawable.heart);
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -121,7 +156,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
 
 
          intent = getActivity().getIntent() ;
-        final int Position = intent.getIntExtra("Position",0) ;
+        Position = intent.getIntExtra("Position",0) ;
 
         movie = (ArrayList<Movie>) intent.getSerializableExtra("Array");
         if (movie == null) {
@@ -157,6 +192,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
         }
 
 
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -179,7 +215,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
 
 
                 }else {
-                    Snackbar.make(view, "Mark as favorite", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(view, "deleted from favorite", Snackbar.LENGTH_SHORT).show();
                     fab.setImageResource(R.drawable.heart);
                     //delet movie
                     FAVORITE = 0 ;
@@ -203,6 +239,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
             }
         });
         review_listview.setAdapter(new reviewAdapter(getContext(),R.layout.review_listview_row,Reviews));
+
         return view;
     }
 
