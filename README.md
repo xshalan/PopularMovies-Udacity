@@ -14,17 +14,17 @@ PopularMovies app -  Android developer nanodegree, Projects 1 &amp; 2
 ----------
 
 #### <i class="icon-file"></i> Stage 2 
-- [ ] Tablet Mode. 
- -[ ] UI contains an element (e.g., a spinner or settings menu) to toggle the sort order of the movies by: most popular, highest rated.
+- [x] Tablet Mode. 
+ -[x] UI contains an element (e.g., a spinner or settings menu) to toggle the sort order of the movies by: most popular, highest rated.
 
-- [ ] Movie Details layout contains a section for displaying trailer videos and user reviews.
+- [x] Movie Details layout contains a section for displaying trailer videos and user reviews.
 
-- [ ] When a trailer is selected, app uses an Intent to launch the trailer.
+- [x] When a trailer is selected, app uses an Intent to launch the trailer.
 
-- [ ] In the movies detail screen, a user can tap a button(for example, a star) to mark it as a Favorite.
+- [x] In the movies detail screen, a user can tap a button(for example, a star) to mark it as a Favorite.
 
-- [ ] App requests for related videos for a selected movie via the /movie/{id}/videos endpoint in a background thread and displays those details when the user selects a movie.
+- [x] App requests for related videos for a selected movie via the /movie/{id}/videos endpoint in a background thread and displays those details when the user selects a movie.
 
-- [ ] The titles and ids of the user's favorite movies are stored in a ContentProvider backed by a SQLite database. This ContentProvider is updated whenever the user favorites or unfavorites a movie.
+- [x] The titles and ids of the user's favorite movies are stored in a ContentProvider backed by a SQLite database. This ContentProvider is updated whenever the user favorites or unfavorites a movie.
 
 ----------
