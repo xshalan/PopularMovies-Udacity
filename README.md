@@ -15,7 +15,7 @@ PopularMovies app -  Android developer nanodegree, Projects 1 &amp; 2
 
 #### <i class="icon-file"></i> Stage 2 
 - [x] Tablet Mode. 
- -[x] UI contains an element (e.g., a spinner or settings menu) to toggle the sort order of the movies by: most popular, highest rated.
+ -[x] UI contains an element (a spinner) to toggle the sort order of the movies by: most popular, highest rated and favorite.
 
 - [x] Movie Details layout contains a section for displaying trailer videos and user reviews.
 
